@@ -11,8 +11,9 @@ const config: Config = {
       colors: {
         ink: "#0f1729",
         canvas: "#f6f7fb",
-        accent: "#5b8def",
-        warn: "#e2574c",
+        // AA-contrast blue: white text on this passes WCAG AA (~4.5:1).
+        accent: "#2563eb",
+        warn: "#c0392b",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
