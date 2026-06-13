@@ -69,7 +69,10 @@ export function ReflectBox() {
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-3">
-          <label htmlFor="reflect-mood" className="text-sm font-medium text-slate-700">
+          <label
+            htmlFor="reflect-mood"
+            className="text-sm font-medium text-slate-700"
+          >
             Today&apos;s mood (1 worst – 10 best)
           </label>
           <input
@@ -107,7 +110,9 @@ export function ReflectBox() {
           className="mt-4 border-t border-slate-100 pt-4 outline-none"
         >
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-ink">What the companion read</h3>
+            <h3 className="text-sm font-semibold text-ink">
+              What the companion read
+            </h3>
             <Badge tone={result?.source === "live" ? "good" : "neutral"}>
               {result?.source === "live" ? "Gemini" : "offline"}
             </Badge>
@@ -145,8 +150,8 @@ export function ReflectBox() {
             )}
           </dl>
           <p className="mt-3 text-xs text-slate-500">
-            The companion reads patterns in your words — it does not diagnose. Safety
-            is rule-decided; the model can never suppress an escalation.
+            The companion reads patterns in your words — it does not diagnose.
+            Safety is rule-decided; the model can never suppress an escalation.
           </p>
         </div>
       )}

@@ -1,13 +1,10 @@
 // Rule-based intervention selection. The AI never picks freely — it only rewrites wording.
-import type {
-  Intervention,
-  Signal,
-  StatsFindings,
-} from "@/types/domain";
+import type { Intervention, Signal, StatsFindings } from "@/types/domain";
 import interventionsFile from "@/data/interventions.json";
 
 type InterventionMap = Record<string, Intervention>;
-const INTERVENTIONS = (interventionsFile as { interventions: InterventionMap }).interventions;
+const INTERVENTIONS = (interventionsFile as { interventions: InterventionMap })
+  .interventions;
 
 const has = (signals: Signal[], pred: (s: Signal) => boolean): boolean =>
   signals.some(pred);
@@ -34,7 +31,10 @@ export function selectIntervention(
     themes.has("guilt");
 
   const candidates: Candidate[] = [
-    { key: "post_mock_sunday_reset", score: (mockCluster ? 3 : 0) + (sleepLinked ? 2 : 0) },
+    {
+      key: "post_mock_sunday_reset",
+      score: (mockCluster ? 3 : 0) + (sleepLinked ? 2 : 0),
+    },
     { key: "sleep_stabilization", score: sleepLinked ? 3 : 0 },
     { key: "thought_reframe", score: distortionsPresent ? 2 : 0 },
     { key: "wins_log", score: negEfficacy ? 2 : 0 },

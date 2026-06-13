@@ -15,11 +15,36 @@ const sig = (affect: string, words: number): Signal => ({
 describe("stats", () => {
   it("clusters by weekday with averages", () => {
     const entries: JournalEntry[] = [
-      { date: "1", weekday: "Mon", mood: 6, sleep_hrs: 7, study_hrs: 8, text: "a" },
-      { date: "2", weekday: "Mon", mood: 8, sleep_hrs: 7, study_hrs: 8, text: "b" },
-      { date: "3", weekday: "Tue", mood: 5, sleep_hrs: 7, study_hrs: 8, text: "c" },
+      {
+        date: "1",
+        weekday: "Mon",
+        mood: 6,
+        sleep_hrs: 7,
+        study_hrs: 8,
+        text: "a",
+      },
+      {
+        date: "2",
+        weekday: "Mon",
+        mood: 8,
+        sleep_hrs: 7,
+        study_hrs: 8,
+        text: "b",
+      },
+      {
+        date: "3",
+        weekday: "Tue",
+        mood: 5,
+        sleep_hrs: 7,
+        study_hrs: 8,
+        text: "c",
+      },
     ];
-    const signals = [sig("calm", 10), sig("content", 12), sig("frustration", 8)];
+    const signals = [
+      sig("calm", 10),
+      sig("content", 12),
+      sig("frustration", 8),
+    ];
     const clusters = weekdayClusters(entries, signals);
     const mon = clusters.find((c) => c.weekday === "Mon");
     expect(mon?.avgMood).toBe(7);

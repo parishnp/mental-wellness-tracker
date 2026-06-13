@@ -46,7 +46,10 @@ export async function generateJSON<T>(opts: {
   const res = await c.models.generateContent({
     model: opts.model,
     contents: opts.user,
-    config: { systemInstruction: opts.system, responseMimeType: "application/json" },
+    config: {
+      systemInstruction: opts.system,
+      responseMimeType: "application/json",
+    },
   });
   if (!res.text) return null;
   return opts.validate(JSON.parse(stripFences(res.text)));

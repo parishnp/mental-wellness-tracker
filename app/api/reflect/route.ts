@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import type { ReflectResponse, JournalEntry } from "@/types/domain";
 import { screenText } from "@/lib/core/crisis";
-import { buildSafetyView } from "@/lib/core/safety";
+import { escalatedSafetyView } from "@/lib/core/safety";
 import { neutralSignal } from "@/lib/core/pipeline";
 import { extractSignals } from "@/lib/ai/extractSignals";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimited, readBody } from "@/lib/api/http";
+import { RATE_LIMITS, MAX_INPUT } from "@/lib/config/limits";
 
 export const runtime = "nodejs"; // Gemini SDK needs the Node runtime, not Edge.
 
@@ -13,27 +14,19 @@ export const runtime = "nodejs"; // Gemini SDK needs the Node runtime, not Edge.
 // accepts a dataset selector), this is the live-journaling path: untrusted free
 // text goes through the deterministic crisis screen FIRST, then GenAI extraction.
 const BodyZ = z.object({
-  text: z.string().min(1).max(2000),
+  text: z.string().min(1).max(MAX_INPUT.journalText),
   mood: z.number().int().min(1).max(10).optional(),
   sleep_hrs: z.number().min(0).max(24).optional(),
   study_hrs: z.number().min(0).max(24).optional(),
 });
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  const limit = rateLimit(`reflect:${ip}`, 20);
-  if (!limit.ok) {
-    return NextResponse.json(
-      { error: "rate_limited" },
-      { status: 429, headers: { "Retry-After": String(limit.retryAfter) } },
-    );
-  }
+  const limited = rateLimited(req, "reflect", RATE_LIMITS.reflect);
+  if (limited) return limited;
 
-  const parsed = BodyZ.safeParse(await req.json().catch(() => ({})));
-  if (!parsed.success) {
-    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
-  }
-  const { text, mood, sleep_hrs, study_hrs } = parsed.data;
+  const body = await readBody(req, BodyZ);
+  if ("error" in body) return body.error;
+  const { text, mood, sleep_hrs, study_hrs } = body.data;
 
   // SAFETY FIRST: the deterministic lexicon screens the raw text before anything
   // else. A hit forces an elevated safety view that the model can never suppress.
@@ -57,15 +50,10 @@ export async function POST(req: Request) {
   if (hits.length > 0) signal = { ...signal, risk_flag: true };
 
   const elevated = hits.length > 0 || signal.risk_flag;
-  const safety = elevated
-    ? buildSafetyView({
-        level: "elevated",
-        riskFlag: signal.risk_flag,
-        triggeredByDate: null,
-        detectedPhrases: hits,
-      })
-    : null;
-
-  const res: ReflectResponse = { signal, safety, source: live ? "live" : "fallback" };
+  const res: ReflectResponse = {
+    signal,
+    safety: elevated ? escalatedSafetyView(hits, signal.risk_flag) : null,
+    source: live ? "live" : "fallback",
+  };
   return NextResponse.json(res);
 }

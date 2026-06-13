@@ -1,17 +1,11 @@
-// Zod validators — the runtime guarantee on anything Gemini returns as JSON.
-import { z } from "zod";
+// Runtime validator for AI-returned JSON. Reuses the canonical SignalZ schema
+// (defined once in lib/data/schema.ts) so the contract lives in a single place.
 import type { Signal } from "@/types/domain";
+import { SignalZ } from "@/lib/data/schema";
 
-export const SignalZ = z.object({
-  dominant_affect: z.string(),
-  themes: z.array(z.string()),
-  distortions: z.array(z.string()),
-  future_orientation: z.enum(["low", "neutral", "high"]),
-  self_efficacy_tone: z.enum(["negative", "neutral", "positive"]),
-  entry_length_words: z.number(),
-  risk_flag: z.boolean(),
-});
+export { SignalZ };
 
+/** Validate an unknown value (e.g. parsed Gemini JSON) as a Signal. Throws on mismatch. */
 export function validateSignal(value: unknown): Signal {
   return SignalZ.parse(value);
 }

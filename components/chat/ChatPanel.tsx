@@ -28,7 +28,10 @@ export function ChatPanel({ datasetId }: { datasetId: DatasetId }) {
     } catch {
       setMessages([
         ...next,
-        { role: "assistant", content: "Sorry — I couldn't respond just now. Try again?" },
+        {
+          role: "assistant",
+          content: "Sorry — I couldn't respond just now. Try again?",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -45,8 +48,8 @@ export function ChatPanel({ datasetId }: { datasetId: DatasetId }) {
       >
         {messages.length === 0 && (
           <p className="text-sm text-slate-500">
-            Ask the companion anything — it answers grounded in the pattern above.
-            Try “why do Sundays hit so hard?” or “I’m exhausted.”
+            Ask the companion anything — it answers grounded in the pattern
+            above. Try “why do Sundays hit so hard?” or “I’m exhausted.”
           </p>
         )}
         {messages.map((m, i) => (
@@ -62,7 +65,9 @@ export function ChatPanel({ datasetId }: { datasetId: DatasetId }) {
           </div>
         ))}
         {loading && (
-          <div className="self-start text-xs text-slate-500">Companion is typing…</div>
+          <div className="self-start text-xs text-slate-500">
+            Companion is typing…
+          </div>
         )}
       </div>
 

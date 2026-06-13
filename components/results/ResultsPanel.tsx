@@ -22,7 +22,10 @@ import { BeforeAfterToggle } from "@/components/controls/BeforeAfterToggle";
 
 // Recharts is heavy and only needed after analysis — keep it out of first load.
 const TrajectoryChart = dynamic(
-  () => import("@/components/results/TrajectoryChart").then((m) => m.TrajectoryChart),
+  () =>
+    import("@/components/results/TrajectoryChart").then(
+      (m) => m.TrajectoryChart,
+    ),
   {
     ssr: false,
     loading: () => (
@@ -77,7 +80,10 @@ export default function ResultsPanel({
         {status}
       </p>
       <div className="flex flex-wrap items-center gap-3">
-        <AnalyzeButton onClick={() => runAnalysis(datasetId)} loading={loading} />
+        <AnalyzeButton
+          onClick={() => runAnalysis(datasetId)}
+          loading={loading}
+        />
         {result && (
           <BeforeAfterToggle
             active={datasetId}
@@ -119,7 +125,10 @@ export default function ResultsPanel({
 
           <Section title="What the numbers hid" step="Step 2">
             <div ref={insightRef} tabIndex={-1} className="outline-none">
-              <InsightCard insight={result.insight} source={result.sources.insight} />
+              <InsightCard
+                insight={result.insight}
+                source={result.sources.insight}
+              />
             </div>
           </Section>
 

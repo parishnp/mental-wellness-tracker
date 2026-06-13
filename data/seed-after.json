@@ -39,7 +39,12 @@
       "text": "Tackled thermodynamics again but this time in small chunks with breaks. It's still my weakest area but I can feel it moving. Did the wins-log thing in the evening, surprised myself with how much I've actually covered this month. Sleeping well.",
       "precomputed_signals": {
         "dominant_affect": "content",
-        "themes": ["physical_chemistry", "thermodynamics", "wins_log", "progress"],
+        "themes": [
+          "physical_chemistry",
+          "thermodynamics",
+          "wins_log",
+          "progress"
+        ],
         "distortions": [],
         "future_orientation": "high",
         "self_efficacy_tone": "positive",

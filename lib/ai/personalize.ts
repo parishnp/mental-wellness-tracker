@@ -8,7 +8,11 @@ import { MODELS } from "@/lib/config/models";
 export async function personalize(core: CoreResult): Promise<string | null> {
   const payload = {
     intervention: core.selectedIntervention,
-    student: { name: core.student.name, exam: core.student.exam, context: core.student.context },
+    student: {
+      name: core.student.name,
+      exam: core.student.exam,
+      context: core.student.context,
+    },
     detected_pattern: {
       worstDay: core.findings.worstDay,
       patternDates: core.patternDates,

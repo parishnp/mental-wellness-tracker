@@ -5,7 +5,10 @@ const post = (body: unknown) =>
   POST(
     new Request("http://test/api/analyze", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-forwarded-for": "2.2.2.2" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-forwarded-for": "2.2.2.2",
+      },
       body: JSON.stringify(body),
     }),
   );

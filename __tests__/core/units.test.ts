@@ -30,7 +30,14 @@ describe("affect polarity", () => {
 describe("mismatch detection (said fine, wrote distressed)", () => {
   it("flags mood>=5 with negative self-efficacy", () => {
     const entries: JournalEntry[] = [
-      { date: "d", weekday: "Sunday", mood: 6, sleep_hrs: 4, study_hrs: 11, text: "it's fine" },
+      {
+        date: "d",
+        weekday: "Sunday",
+        mood: 6,
+        sleep_hrs: 4,
+        study_hrs: 11,
+        text: "it's fine",
+      },
     ];
     const signals: Signal[] = [
       {
@@ -48,7 +55,11 @@ describe("mismatch detection (said fine, wrote distressed)", () => {
 });
 
 describe("wellness scores respond to signal content", () => {
-  const mk = (affect: string, tone: Signal["self_efficacy_tone"], future: Signal["future_orientation"]): Signal => ({
+  const mk = (
+    affect: string,
+    tone: Signal["self_efficacy_tone"],
+    future: Signal["future_orientation"],
+  ): Signal => ({
     dominant_affect: affect,
     themes: [],
     distortions: [],

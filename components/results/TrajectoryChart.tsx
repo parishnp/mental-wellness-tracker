@@ -43,16 +43,34 @@ export function TrajectoryChart({
   return (
     <div
       role="img"
-      aria-label={summary ?? "Wellness trajectory: mood, sleep and entry length over the week"}
+      aria-label={
+        summary ??
+        "Wellness trajectory: mood, sleep and entry length over the week"
+      }
       className="h-72 w-full rounded-2xl border border-slate-200 bg-white p-4"
     >
       {summary && <p className="sr-only">{summary}</p>}
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -16 }}>
+        <LineChart
+          data={data}
+          margin={{ top: 8, right: 12, bottom: 4, left: -16 }}
+        >
           <CartesianGrid strokeDasharray="3 3" stroke="#eef1f6" />
-          <XAxis dataKey="label" tick={{ fontSize: 11 }} interval={0} angle={-25} textAnchor="end" height={50} />
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 11 }}
+            interval={0}
+            angle={-25}
+            textAnchor="end"
+            height={50}
+          />
           <YAxis yAxisId="left" domain={[0, 12]} tick={{ fontSize: 11 }} />
-          <YAxis yAxisId="right" orientation="right" domain={[0, 70]} tick={{ fontSize: 11 }} />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            domain={[0, 70]}
+            tick={{ fontSize: 11 }}
+          />
           <Tooltip />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line

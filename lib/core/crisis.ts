@@ -28,7 +28,10 @@ export function screenEntry(entry: JournalEntry, signal?: Signal): string[] {
   return [...new Set(hits)];
 }
 
-export function screen(entries: JournalEntry[], signals: Signal[]): CrisisResult {
+export function screen(
+  entries: JournalEntry[],
+  signals: Signal[],
+): CrisisResult {
   let triggeredByDate: string | null = null;
   const detectedPhrases: string[] = [];
   for (let i = 0; i < entries.length; i++) {

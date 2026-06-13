@@ -17,8 +17,8 @@ export default function Methodology() {
           selects interventions, never handles crisis.
         </li>
         <li>
-          <strong>Safety:</strong> rules override the model upward. A lexicon hit
-          or a risk-flagged entry forces the helpline card; the model cannot
+          <strong>Safety:</strong> rules override the model upward. A lexicon
+          hit or a risk-flagged entry forces the helpline card; the model cannot
           downgrade it.
         </li>
       </ol>

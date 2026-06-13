@@ -3,7 +3,9 @@
 import { z } from "zod";
 import type { Dataset } from "@/types/domain";
 
-const SignalZ = z.object({
+/** Canonical schema for a signal object — the single source of truth, reused by
+ *  the AI-output validator (lib/ai/schemas.ts) and dataset validation below. */
+export const SignalZ = z.object({
   dominant_affect: z.string(),
   themes: z.array(z.string()),
   distortions: z.array(z.string()),

@@ -5,7 +5,10 @@ const post = (body: unknown) =>
   POST(
     new Request("http://test/api/reflect", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-forwarded-for": "3.3.3.3" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-forwarded-for": "3.3.3.3",
+      },
       body: JSON.stringify(body),
     }),
   );
@@ -24,7 +27,10 @@ describe("POST /api/reflect (the student's own journaling path)", () => {
   });
 
   it("returns a neutral, no-crisis signal offline for an ordinary entry", async () => {
-    const res = await post({ text: "Solved a tough integrals set today, felt good.", mood: 7 });
+    const res = await post({
+      text: "Solved a tough integrals set today, felt good.",
+      mood: 7,
+    });
     const json = await res.json();
     expect(res.status).toBe(200);
     expect(json.signal.risk_flag).toBe(false);

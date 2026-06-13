@@ -23,18 +23,27 @@ const entry = (text: string): JournalEntry => ({
 
 describe("crisis screen (deterministic, overrides the model upward)", () => {
   it("escalates on an explicit lexicon phrase", () => {
-    const r = screen([entry("some days they'd be better off without me")], [baseSignal]);
+    const r = screen(
+      [entry("some days they'd be better off without me")],
+      [baseSignal],
+    );
     expect(r.level).toBe("elevated");
     expect(r.triggeredByDate).toBe("2026-01-01");
   });
 
   it("escalates when a signal carries risk_flag even with benign text", () => {
-    const r = screen([entry("nothing notable today")], [{ ...baseSignal, risk_flag: true }]);
+    const r = screen(
+      [entry("nothing notable today")],
+      [{ ...baseSignal, risk_flag: true }],
+    );
     expect(r.level).toBe("elevated");
   });
 
   it("stays none for ordinary stressed text", () => {
-    const r = screen([entry("frustrated with chemistry but pushing on")], [baseSignal]);
+    const r = screen(
+      [entry("frustrated with chemistry but pushing on")],
+      [baseSignal],
+    );
     expect(r.level).toBe("none");
     expect(r.triggeredByDate).toBeNull();
   });
@@ -42,7 +51,9 @@ describe("crisis screen (deterministic, overrides the model upward)", () => {
 
 describe("screenText (the chat safety gate)", () => {
   it("detects an explicit crisis phrase in a chat message", () => {
-    expect(screenText("honestly they'd be better off without me").length).toBeGreaterThan(0);
+    expect(
+      screenText("honestly they'd be better off without me").length,
+    ).toBeGreaterThan(0);
   });
 
   it("returns no hits for an ordinary stressed message", () => {

@@ -44,7 +44,9 @@ export function ScoreMeter({
           style={{ width: `${metric.value}%` }}
         />
       </div>
-      <p className="mt-2 text-xs leading-snug text-slate-500">{metric.evidence}</p>
+      <p className="mt-2 text-xs leading-snug text-slate-500">
+        {metric.evidence}
+      </p>
     </div>
   );
 }

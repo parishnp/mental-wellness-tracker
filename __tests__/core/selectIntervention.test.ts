@@ -29,15 +29,16 @@ const sig = (over: Partial<Signal> = {}): Signal => ({
 
 describe("selectIntervention (rule-based, deterministic)", () => {
   it("mock-cluster + sleep lag → post-mock Sunday reset", () => {
-    const r = selectIntervention(
-      findings({ strongerLag: "same-night" }),
-      [sig({ themes: ["mock_results", "self_comparison"] })],
-    );
+    const r = selectIntervention(findings({ strongerLag: "same-night" }), [
+      sig({ themes: ["mock_results", "self_comparison"] }),
+    ]);
     expect(r.id).toBe("post_mock_sunday_reset");
   });
 
   it("sleep lag without mock themes → sleep stabilization", () => {
-    const r = selectIntervention(findings({ strongerLag: "next-day" }), [sig()]);
+    const r = selectIntervention(findings({ strongerLag: "next-day" }), [
+      sig(),
+    ]);
     expect(r.id).toBe("sleep_stabilization");
   });
 

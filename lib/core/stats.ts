@@ -104,8 +104,12 @@ export function computeFindings(
   )[0];
   const worstDay = worst?.weekday ?? "";
 
-  const worstMoods = entries.filter((e) => e.weekday === worstDay).map((e) => e.mood);
-  const otherMoods = entries.filter((e) => e.weekday !== worstDay).map((e) => e.mood);
+  const worstMoods = entries
+    .filter((e) => e.weekday === worstDay)
+    .map((e) => e.mood);
+  const otherMoods = entries
+    .filter((e) => e.weekday !== worstDay)
+    .map((e) => e.mood);
   const worstSleep = entries
     .filter((e) => e.weekday === worstDay)
     .map((e) => e.sleep_hrs);
@@ -117,7 +121,8 @@ export function computeFindings(
   const nextDay = corr(sleep.slice(0, -1), mood.slice(1));
   let strongerLag: StatsFindings["strongerLag"] = "none";
   if (Math.abs(sameNight) >= 0.2 || Math.abs(nextDay) >= 0.2) {
-    strongerLag = Math.abs(sameNight) >= Math.abs(nextDay) ? "same-night" : "next-day";
+    strongerLag =
+      Math.abs(sameNight) >= Math.abs(nextDay) ? "same-night" : "next-day";
   }
 
   const lowSleepDays = entries.filter((e) => e.sleep_hrs <= 4).length;
@@ -131,7 +136,10 @@ export function computeFindings(
   entries.forEach((_, i) => {
     const s = signals[i];
     if (!s) return;
-    if (affectNegativity(s.dominant_affect) >= 0.6 || s.self_efficacy_tone === "negative") {
+    if (
+      affectNegativity(s.dominant_affect) >= 0.6 ||
+      s.self_efficacy_tone === "negative"
+    ) {
       for (const t of s.themes) themeCount.set(t, (themeCount.get(t) ?? 0) + 1);
     }
   });
@@ -148,7 +156,9 @@ export function computeFindings(
     clusters,
     sleepMoodLag,
     strongerLag,
-    entryLengthTrend: trendLabel(slope(signals.map((s) => s.entry_length_words))),
+    entryLengthTrend: trendLabel(
+      slope(signals.map((s) => s.entry_length_words)),
+    ),
     moodTrend: trendLabel(slope(mood)),
     recurringNegativeThemes,
     worstDaySleepHrs: worstSleep,

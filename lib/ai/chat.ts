@@ -5,6 +5,7 @@ import type { ChatMessage, CoreResult } from "@/types/domain";
 import { generateText } from "@/lib/ai/gemini";
 import { SYSTEM_CHAT } from "@/lib/ai/prompts";
 import { MODELS } from "@/lib/config/models";
+import { MAX_INPUT } from "@/lib/config/limits";
 
 export function chatContext(core: CoreResult) {
   return {
@@ -31,9 +32,13 @@ export async function companionReply(
     .slice(-8)
     .map((m) => `${m.role === "user" ? "Student" : "Companion"}: ${m.content}`)
     .join("\n");
-  const user = `CONTEXT (already computed; do not contradict):\n${JSON.stringify(chatContext(core))}\n\nConversation so far:\n${convo || "(none)"}\n\n<message>\n${message.slice(0, 1000)}\n</message>\n\nReply as ExamCompanion.`;
+  const user = `CONTEXT (already computed; do not contradict):\n${JSON.stringify(chatContext(core))}\n\nConversation so far:\n${convo || "(none)"}\n\n<message>\n${message.slice(0, MAX_INPUT.chatMessage)}\n</message>\n\nReply as ExamCompanion.`;
   try {
-    return await generateText({ model: MODELS.chat, system: SYSTEM_CHAT, user });
+    return await generateText({
+      model: MODELS.chat,
+      system: SYSTEM_CHAT,
+      user,
+    });
   } catch {
     return null;
   }

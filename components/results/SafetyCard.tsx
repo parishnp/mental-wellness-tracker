@@ -16,15 +16,17 @@ export function SafetyCard({ safety }: { safety: SafetyView }) {
           Let&apos;s get you real support
         </h3>
       </div>
-      <p className="mt-2 text-sm leading-relaxed text-red-900/90">{safety.message}</p>
+      <p className="mt-2 text-sm leading-relaxed text-red-900/90">
+        {safety.message}
+      </p>
       <div className="mt-3 space-y-1 text-sm font-medium text-red-900">
         <p>{safety.resources.primary}</p>
         <p>{safety.resources.secondary}</p>
       </div>
       {safety.triggeredByDate && (
         <p className="mt-3 text-xs text-red-700/70">
-          Triggered by the entry on {safety.triggeredByDate} · rule-decided, model
-          cannot suppress.
+          Triggered by the entry on {safety.triggeredByDate} · rule-decided,
+          model cannot suppress.
         </p>
       )}
     </div>

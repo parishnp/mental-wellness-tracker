@@ -43,7 +43,10 @@ beforeEach(() => {
 });
 
 const panel = () =>
-  h(ResultsPanel, { student: dataset.student, initialEntries: dataset.entries });
+  h(ResultsPanel, {
+    student: dataset.student,
+    initialEntries: dataset.entries,
+  });
 
 describe("ResultsPanel", () => {
   it("renders the journal feed on first paint, before any analysis", () => {

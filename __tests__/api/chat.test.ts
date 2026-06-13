@@ -7,7 +7,10 @@ const post = (body: unknown) =>
   POST(
     new Request("http://test/api/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-forwarded-for": "1.1.1.1" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-forwarded-for": "1.1.1.1",
+      },
       body: JSON.stringify(body),
     }),
   );
@@ -26,7 +29,10 @@ describe("POST /api/chat", () => {
   });
 
   it("returns a grounded fallback reply for an ordinary message", async () => {
-    const res = await post({ datasetId: "before", message: "I'm exhausted tonight" });
+    const res = await post({
+      datasetId: "before",
+      message: "I'm exhausted tonight",
+    });
     const json = await res.json();
     expect(res.status).toBe(200);
     expect(json.safety).toBeNull();

@@ -11,7 +11,11 @@ import type {
 } from "@/types/domain";
 import { affectNegativity, clamp01 } from "@/lib/core/affect";
 
-const ANTICIPATION_THEMES = ["mock_anticipation", "rumination", "sleep_disruption"];
+const ANTICIPATION_THEMES = [
+  "mock_anticipation",
+  "rumination",
+  "sleep_disruption",
+];
 const ANXIETY_DISTORTIONS = ["catastrophizing", "mental_filter"];
 const PRESSURE_THEMES = ["family_pressure", "financial_burden", "guilt"];
 
@@ -42,11 +46,17 @@ function aggregate(
   return {
     negativity: mean(signals.map((s) => affectNegativity(s.dominant_affect))),
     sleepDeficitShare: share(entries.map((e) => e.sleep_hrs < sleepFloor)),
-    distortionDensity: clamp01(mean(signals.map((s) => s.distortions.length)) / 2),
-    negEfficacyShare: share(signals.map((s) => s.self_efficacy_tone === "negative")),
+    distortionDensity: clamp01(
+      mean(signals.map((s) => s.distortions.length)) / 2,
+    ),
+    negEfficacyShare: share(
+      signals.map((s) => s.self_efficacy_tone === "negative"),
+    ),
     lowFutureShare: share(signals.map((s) => s.future_orientation === "low")),
     highFutureShare: share(signals.map((s) => s.future_orientation === "high")),
-    posEfficacyShare: share(signals.map((s) => s.self_efficacy_tone === "positive")),
+    posEfficacyShare: share(
+      signals.map((s) => s.self_efficacy_tone === "positive"),
+    ),
     anticipationShare: share(
       signals.map(
         (s) =>
@@ -90,7 +100,12 @@ const metric = (
   value: number,
   direction: "problem" | "positive",
   evidence: string,
-): ScoredMetric => ({ value, band: band(value, direction), direction, evidence });
+): ScoredMetric => ({
+  value,
+  band: band(value, direction),
+  direction,
+  evidence,
+});
 
 export function computeScores(
   entries: JournalEntry[],

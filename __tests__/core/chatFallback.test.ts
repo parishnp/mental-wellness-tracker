@@ -7,7 +7,10 @@ const core = runPipeline("before", loadDataset("before"));
 
 describe("offline chat fallback (pattern-aware, deterministic)", () => {
   it("routes a sleep message to the sleep-focused reply", () => {
-    const r = fallbackReply(core, "I keep staying up too late and I'm exhausted");
+    const r = fallbackReply(
+      core,
+      "I keep staying up too late and I'm exhausted",
+    );
     expect(r.toLowerCase()).toMatch(/sleep|night|seven hours/);
   });
 

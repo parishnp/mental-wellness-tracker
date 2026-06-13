@@ -32,7 +32,8 @@ export function affectNegativity(affect: string): number {
   if (MILD_NEGATIVE.some((k) => a.includes(k))) return 0.65;
   if (POSITIVE.some((k) => a.includes(k))) return 0;
   // Unknown affects: lean on keyword cues, else neutral.
-  if (a.includes("anx") || a.includes("frustrat") || a.includes("hopeless")) return 0.8;
+  if (a.includes("anx") || a.includes("frustrat") || a.includes("hopeless"))
+    return 0.8;
   if (a.includes("calm") || a.includes("conf") || a.includes("hope")) return 0;
   return 0.5;
 }

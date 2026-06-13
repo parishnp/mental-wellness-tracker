@@ -6,7 +6,9 @@ import { generateText } from "@/lib/ai/gemini";
 import { SYSTEM_INSIGHT } from "@/lib/ai/prompts";
 import { MODELS } from "@/lib/config/models";
 
-export async function synthesizeInsight(core: CoreResult): Promise<string | null> {
+export async function synthesizeInsight(
+  core: CoreResult,
+): Promise<string | null> {
   try {
     return await generateText({
       model: MODELS.insight,
