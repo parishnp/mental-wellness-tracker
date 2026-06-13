@@ -17,6 +17,14 @@ describe("affect polarity", () => {
     expect(isNegativeAffect("hopelessness")).toBe(true);
     expect(isNegativeAffect("content")).toBe(false);
   });
+
+  it("handles mild, manageable, keyword-cued, and unknown affects", () => {
+    expect(affectNegativity("anticipatory_anxiety")).toBe(0.65);
+    expect(affectNegativity("manageable_anxiety")).toBe(0.4);
+    expect(affectNegativity("anxious-and-unsettled")).toBe(0.8); // 'anx' keyword cue
+    expect(affectNegativity("hopey")).toBe(0); // 'hope' keyword cue
+    expect(affectNegativity("nondescript")).toBe(0.5); // unknown → neutral
+  });
 });
 
 describe("mismatch detection (said fine, wrote distressed)", () => {

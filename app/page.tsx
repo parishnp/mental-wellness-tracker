@@ -1,6 +1,9 @@
 import { loadDataset } from "@/lib/data/loadDataset";
 import ResultsPanel from "@/components/results/ResultsPanel";
 
+// Required for per-request CSP nonces (middleware) to be applied to scripts.
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   const before = loadDataset("before");
   const { student } = before;

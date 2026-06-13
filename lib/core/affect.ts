@@ -26,8 +26,10 @@ const POSITIVE = [
 export function affectNegativity(affect: string): number {
   const a = (affect || "").toLowerCase();
   if (STRONG_NEGATIVE.some((k) => a.includes(k))) return 1;
-  if (MILD_NEGATIVE.some((k) => a.includes(k))) return 0.65;
+  // MANAGEABLE before MILD: "manageable_anxiety" contains "anxiety" (a MILD key),
+  // so it must be matched first or it would be mis-scored as mild-negative.
   if (MANAGEABLE.some((k) => a.includes(k))) return 0.4;
+  if (MILD_NEGATIVE.some((k) => a.includes(k))) return 0.65;
   if (POSITIVE.some((k) => a.includes(k))) return 0;
   // Unknown affects: lean on keyword cues, else neutral.
   if (a.includes("anx") || a.includes("frustrat") || a.includes("hopeless")) return 0.8;

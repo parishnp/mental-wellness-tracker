@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function Methodology() {
   return (
     <main className="mx-auto max-w-3xl px-5 py-10">
