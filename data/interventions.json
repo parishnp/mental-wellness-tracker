@@ -1,0 +1,35 @@
+{
+  "_note": "Vetted intervention set. selectIntervention.js (deterministic) picks from these by detected state. personalize.js only rewrites the wording in exam-fluent voice — it must NOT invent a new intervention.",
+  "interventions": {
+    "post_mock_sunday_reset": {
+      "id": "post_mock_sunday_reset",
+      "title": "Sunday-Night Reset Routine",
+      "trigger_state": "worst-day clustering on a mock day + mock_results/self_comparison themes + sleep-linked dip",
+      "base_content": "After each Sunday mock, cap your results review at 15 minutes — set a timer and close the laptop when it rings. Follow with a 3-minute paced-breathing reset (inhale 4, exhale 6). No new studying after 10:30pm; lights out by 11 so sleep doesn't become the trigger for Monday's mood. The mock is one data point in a long trajectory, not a verdict on it."
+    },
+    "sleep_stabilization": {
+      "id": "sleep_stabilization",
+      "title": "Sleep Stabilization",
+      "trigger_state": "mood crashes lagging 1 night behind sleep loss",
+      "base_content": "Protect a fixed wind-down window: stop active studying 60 minutes before bed, dim screens, and do passive revision (formula sheets, flashcards) instead of new problems. A consistent 7 hours stabilizes next-day mood far more than the extra hour of cramming costs you."
+    },
+    "thought_reframe": {
+      "id": "thought_reframe",
+      "title": "Thought Record & Reframe",
+      "trigger_state": "cognitive distortions present (all_or_nothing, overgeneralization, catastrophizing)",
+      "base_content": "When you catch an absolute thought like 'I always mess up chemistry,' write it down, name the distortion (overgeneralization), and replace it with a calibrated version backed by evidence: 'I struggled with thermodynamics on this mock; I scored well on organic last week.' Specific beats absolute, every time."
+    },
+    "wins_log": {
+      "id": "wins_log",
+      "title": "Wins Log & Self-Compassion",
+      "trigger_state": "negative self_efficacy tone, self_comparison theme",
+      "base_content": "Each evening, log three things that went right that day — a chapter understood, a set completed, a problem you'd have missed last month. Self-doubt thrives on a mental filter that deletes evidence of competence; the log rebuilds that evidence. Talk to yourself the way you'd talk to a friend in the same hostel room."
+    },
+    "autonomy_reframe": {
+      "id": "autonomy_reframe",
+      "title": "Reconnect to Why",
+      "trigger_state": "obligation-only language, declining motivation, family-pressure theme",
+      "base_content": "When the prep feels like it's only 'for them,' write one line about what YOU want on the other side of this exam. Shift one 'I have to' into 'I choose to, because…'. Motivation that's yours outlasts motivation that's borrowed."
+    }
+  }
+}

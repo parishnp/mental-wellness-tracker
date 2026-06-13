@@ -1,0 +1,153 @@
+{
+  "student": {
+    "name": "Aarav",
+    "exam": "NEET",
+    "attempt": 2,
+    "target_date": "2026-05-03",
+    "context": "Two weeks after starting the Sunday-night reset routine. Mock tests still on Sunday mornings, but a structured wind-down and capped results-review are now in place."
+  },
+  "week_label": "after",
+  "baseline": {
+    "typical_mood": 6.5,
+    "typical_sleep_hrs": 6.5,
+    "typical_study_hrs": 9
+  },
+  "entries": [
+    {
+      "date": "2026-06-22",
+      "weekday": "Monday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "Good steady Monday. Bio in the morning, physics in the afternoon. The routine is holding. I notice I'm not dreading the week the way I used to. Planning to give physical chemistry a proper structured go this week instead of avoiding it.",
+      "precomputed_signals": {
+        "dominant_affect": "calm",
+        "themes": ["biology", "physics", "routine", "planning"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 45,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-23",
+      "weekday": "Tuesday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "Tackled thermodynamics again but this time in small chunks with breaks. It's still my weakest area but I can feel it moving. Did the wins-log thing in the evening, surprised myself with how much I've actually covered this month. Sleeping well.",
+      "precomputed_signals": {
+        "dominant_affect": "content",
+        "themes": ["physical_chemistry", "thermodynamics", "wins_log", "progress"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 44,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-24",
+      "weekday": "Wednesday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "Solid middle of the week. Genetics revision, organic chemistry mechanisms. Called home and actually told Amma the truth about how the prep is going, the hard parts too. Felt lighter afterwards. Should have done that ages ago.",
+      "precomputed_signals": {
+        "dominant_affect": "relieved",
+        "themes": ["biology", "organic_chemistry", "family", "honesty"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 42,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-25",
+      "weekday": "Thursday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "Confident day. PYQs across all three subjects and the chemistry score is creeping up. Not where I want it yet but the trend is right. I keep reminding myself one mock is one data point, not a verdict. Bed on time.",
+      "precomputed_signals": {
+        "dominant_affect": "confident",
+        "themes": ["practice", "chemistry", "progress", "perspective"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 44,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-26",
+      "weekday": "Friday",
+      "mood": 6,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "Mock tomorrow. There's still nerves, that hasn't vanished, but it's manageable now. Did my light revision and I'm going to follow the wind-down tonight instead of cramming. Lights out by 11 is the plan. One test, one day.",
+      "precomputed_signals": {
+        "dominant_affect": "manageable_anxiety",
+        "themes": ["mock_anticipation", "wind_down_routine", "coping"],
+        "distortions": [],
+        "future_orientation": "neutral",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 43,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-27",
+      "weekday": "Saturday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 7,
+      "text": "Stuck to the wind-down last night and actually slept properly before a pre-mock day for once. Took it easy today, formula sheets and a walk. Feeling ready rather than frantic. Big difference from a few weeks ago.",
+      "precomputed_signals": {
+        "dominant_affect": "calm",
+        "themes": ["wind_down_routine", "sleep", "readiness"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 41,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-28",
+      "weekday": "Sunday",
+      "mood": 6,
+      "sleep_hrs": 7,
+      "study_hrs": 8,
+      "text": "Mock done. Score was up a little, chemistry less of a disaster. Kept the results review to 15 minutes like the plan said, then closed the laptop and went for chai with the guys instead of spiraling. The Sunday doesn't own me the way it used to. Sticking with this.",
+      "precomputed_signals": {
+        "dominant_affect": "steady",
+        "themes": ["mock_results", "capped_review", "social_support", "coping"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 52,
+        "risk_flag": false
+      }
+    },
+    {
+      "date": "2026-06-29",
+      "weekday": "Monday",
+      "mood": 7,
+      "sleep_hrs": 7,
+      "study_hrs": 9,
+      "text": "No Sunday hangover today, which is the whole point. Started the week fresh. Looking at the calendar to the exam and for the first time in a while it feels like a goal I'm walking toward rather than a wall I'm about to hit.",
+      "precomputed_signals": {
+        "dominant_affect": "hopeful",
+        "themes": ["recovery", "momentum", "future_planning"],
+        "distortions": [],
+        "future_orientation": "high",
+        "self_efficacy_tone": "positive",
+        "entry_length_words": 46,
+        "risk_flag": false
+      }
+    }
+  ]
+}

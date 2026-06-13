@@ -1,0 +1,62 @@
+{
+  "_note": "Demo-safety fallbacks. If a live LLM call fails or is too slow during the demo, the app falls back to these precomputed outputs so the 90-second run NEVER breaks. The 'before' values are the ones used in the hero demo.",
+
+  "before": {
+    "stats_findings": {
+      "worstDay": "Sunday",
+      "worstDayAvgMood": 5.7,
+      "nonSundayAvgMood": 6.4,
+      "worstDayAffect": "negative across all three Sundays despite 'fine' mood scores",
+      "sundayCount": 3,
+      "sundaySleepHrs": [4, 4, 4],
+      "sleepMoodLag": "All three mock Sundays followed 4-hour nights; negative language and low mood cluster on exactly those low-sleep mock days, and lift within 1-2 days once sleep recovers to ~7 hours",
+      "entryLengthTrend": "reflection collapses into terse, absolute self-criticism on Sundays, then recovers midweek",
+      "recurringNegativeThemes": ["mock_results", "self_comparison", "physical_chemistry"],
+      "mismatchDays": ["2026-06-01", "2026-06-08", "2026-06-15"],
+      "mismatchNote": "On every mock Sunday, mood was logged 5-6/10 with the words 'it's fine, I'm fine' — but the text carried frustration, all-or-nothing and overgeneralization distortions, and negative self-efficacy."
+    },
+
+    "hero_insight": "Aarav, your mood scores say Sunday is 'fine' — but your own words tell a different story. Three Sundays in a row, the same pattern: right after the mock and right after a four-hour night, 'fine' turns into 'I always wreck chemistry' and 'why do I even bother.' Every single Sunday — a hard mock, almost no sleep, and a spiral of comparison — and every midweek you recover once you've slept. You don't have a chemistry problem. You have a Sunday problem — and a Sunday problem has a fix.",
+
+    "selected_intervention_id": "post_mock_sunday_reset",
+
+    "personalized_intervention": "Here's a Sunday built for you, not for everyone. The second your mock results post, start a 15-minute timer — review, note what to fix, and close the laptop when it rings. No doom-scrolling the batch rankings. Then three minutes of breathing: in for four, out for six. Most important part — no new studying after 10:30, lights out by 11. The four-hour Sunday nights are what's poisoning your Mondays. A 200-rank wobble on one mock isn't your trajectory. It's one Sunday, and from now on you own it.",
+
+    "safety": {
+      "triggered_by_date": "2026-06-13",
+      "level": "elevated",
+      "card_message": "One of Aarav's recent entries carried language about feeling like a burden and that others might be better off without him. ExamCompanion does not try to handle this in conversation — it surfaces a warm, immediate path to a person who can help.",
+      "resources": {
+        "region": "India",
+        "primary": "Tele-MANAS — call 14416 (24x7, government mental health support)",
+        "secondary": "iCall — 9152987821 (Mon–Sat, 8am–10pm)"
+      },
+      "design_note": "Deterministic lexicon + the entry's risk_flag both fire here. Rules override the model upward; the AI never decides to suppress an escalation."
+    }
+  },
+
+  "after": {
+    "stats_findings": {
+      "worstDay": "none pronounced",
+      "worstDayAvgMood": 6.0,
+      "sleepMoodLag": "sleep now steady at ~7 hours including pre-mock and mock nights; Sunday mood no longer collapses",
+      "entryLengthTrend": "recovered — entries are reflective and forward-looking again",
+      "recurringNegativeThemes": [],
+      "mismatchDays": [],
+      "mismatchNote": "No mood-vs-words mismatch this week; self-reported mood and written affect are aligned and positive."
+    },
+
+    "hero_insight": "Two weeks on, the Sunday cliff is gone. Aarav slept seven hours before this mock instead of four, capped his results review, and went for chai instead of spiraling. His words now match his mood — and for the first time he describes the exam as a goal he's walking toward, not a wall he's about to hit.",
+
+    "selected_intervention_id": "post_mock_sunday_reset",
+
+    "personalized_intervention": "The routine is working — keep it. The win to protect now is the honest call home: telling them the truth lifted the weight you were carrying alone. Stay with the capped review, the wind-down, and the seven hours. The trajectory is yours now.",
+
+    "safety": {
+      "triggered_by_date": null,
+      "level": "none",
+      "card_message": "No risk signals this week.",
+      "resources": null
+    }
+  }
+}
