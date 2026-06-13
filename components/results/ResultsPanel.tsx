@@ -1,21 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import type {
-  AssessmentResult,
+  AnalyzeResponse,
   DatasetId,
   JournalEntry,
   Student,
 } from "@/types/domain";
+import { analyze } from "@/lib/api/analyze";
 import { Section } from "@/components/ui/Section";
 import { JournalFeed } from "@/components/feed/JournalFeed";
-import { TrajectoryChart } from "@/components/results/TrajectoryChart";
 import { InsightCard } from "@/components/results/InsightCard";
 import { InterventionCard } from "@/components/results/InterventionCard";
 import { ScorePanel } from "@/components/results/ScorePanel";
 import { SafetyCard } from "@/components/results/SafetyCard";
+import { ChatPanel } from "@/components/chat/ChatPanel";
 import { AnalyzeButton } from "@/components/controls/AnalyzeButton";
 import { BeforeAfterToggle } from "@/components/controls/BeforeAfterToggle";
+
+// Recharts is heavy and only needed after analysis — keep it out of first load.
+const TrajectoryChart = dynamic(
+  () => import("@/components/results/TrajectoryChart").then((m) => m.TrajectoryChart),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-72 w-full animate-pulse rounded-2xl border border-slate-200 bg-white" />
+    ),
+  },
+);
 
 export default function ResultsPanel({
   student,
@@ -26,22 +39,16 @@ export default function ResultsPanel({
 }) {
   const [datasetId, setDatasetId] = useState<DatasetId>("before");
   const [entries, setEntries] = useState<JournalEntry[]>(initialEntries);
-  const [result, setResult] = useState<AssessmentResult | null>(null);
+  const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function analyze(id: DatasetId) {
+  async function runAnalysis(id: DatasetId) {
     setLoading(true);
     setError(null);
     setDatasetId(id);
     try {
-      const res = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ datasetId: id }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: AssessmentResult = await res.json();
+      const data = await analyze(id);
       setResult(data);
       setEntries(data.entries);
     } catch {
@@ -57,11 +64,11 @@ export default function ResultsPanel({
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
-        <AnalyzeButton onClick={() => analyze(datasetId)} loading={loading} />
+        <AnalyzeButton onClick={() => runAnalysis(datasetId)} loading={loading} />
         {result && (
           <BeforeAfterToggle
             active={datasetId}
-            onChange={analyze}
+            onChange={runAnalysis}
             disabled={loading}
           />
         )}
@@ -112,6 +119,10 @@ export default function ResultsPanel({
               source={result.sources.personalize}
             />
             <SafetyCard safety={result.safety} />
+          </Section>
+
+          <Section title="Talk it through" step="Step 5">
+            <ChatPanel key={datasetId} datasetId={datasetId} />
           </Section>
         </>
       )}

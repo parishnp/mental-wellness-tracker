@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { screen } from "@/lib/core/crisis";
+import { screen, screenText } from "@/lib/core/crisis";
 import type { JournalEntry, Signal } from "@/types/domain";
 
 const baseSignal: Signal = {
@@ -37,5 +37,15 @@ describe("crisis screen (deterministic, overrides the model upward)", () => {
     const r = screen([entry("frustrated with chemistry but pushing on")], [baseSignal]);
     expect(r.level).toBe("none");
     expect(r.triggeredByDate).toBeNull();
+  });
+});
+
+describe("screenText (the chat safety gate)", () => {
+  it("detects an explicit crisis phrase in a chat message", () => {
+    expect(screenText("honestly they'd be better off without me").length).toBeGreaterThan(0);
+  });
+
+  it("returns no hits for an ordinary stressed message", () => {
+    expect(screenText("I'm so tired of these mocks")).toEqual([]);
   });
 });

@@ -16,9 +16,14 @@ const LEXICON = [
   "wish i wasnt here",
 ];
 
+/** Lexicon screen on raw text. Used by the journal screen and the chat safety gate. */
+export function screenText(text: string): string[] {
+  const t = (text || "").toLowerCase();
+  return [...new Set(LEXICON.filter((p) => t.includes(p)))];
+}
+
 export function screenEntry(entry: JournalEntry, signal?: Signal): string[] {
-  const text = (entry.text || "").toLowerCase();
-  const hits = LEXICON.filter((p) => text.includes(p));
+  const hits = screenText(entry.text);
   if (signal?.risk_flag) hits.push("[signal.risk_flag]");
   return [...new Set(hits)];
 }

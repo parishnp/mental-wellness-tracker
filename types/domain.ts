@@ -153,3 +153,17 @@ export interface AssessmentResult extends CoreResult {
   safety: SafetyView;
   sources: { insight: AiSource; personalize: AiSource };
 }
+
+// Wire payload: drop the heavy fields the client never reads (efficiency).
+export type AnalyzeResponse = Omit<AssessmentResult, "mismatches" | "signals">;
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ChatResponse {
+  reply: string;
+  source: AiSource;
+  safety: SafetyView | null;
+}
