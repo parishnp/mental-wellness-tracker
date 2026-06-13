@@ -23,6 +23,11 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: { "@": path.resolve(__dirname, ".") },
+    alias: {
+      "@": path.resolve(__dirname, "."),
+      // `server-only` throws on import outside an RSC; route handlers are tested
+      // directly here, so alias it to a no-op stub.
+      "server-only": path.resolve(__dirname, "__tests__/stubs/server-only.ts"),
+    },
   },
 });

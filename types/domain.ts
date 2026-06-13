@@ -167,3 +167,10 @@ export interface ChatResponse {
   source: AiSource;
   safety: SafetyView | null;
 }
+
+// Live GenAI analysis of the student's OWN open-ended entry (the journaling path).
+export interface ReflectResponse {
+  signal: Signal;
+  safety: SafetyView | null;
+  source: AiSource;
+}

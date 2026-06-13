@@ -20,7 +20,7 @@ export function InterventionCard({
         </Badge>
       </div>
       <p className="mt-2 text-sm leading-relaxed text-slate-700">{personalized}</p>
-      <p className="mt-3 border-t border-slate-100 pt-3 text-xs text-slate-400">
+      <p className="mt-3 border-t border-slate-100 pt-3 text-xs text-slate-500">
         Rule-selected from the vetted set ({intervention.id}); the model only
         rewrote the wording.
       </p>

@@ -39,7 +39,7 @@ function JournalEntryCardImpl({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-ink">{entry.weekday}</span>
-          <span className="text-xs text-slate-400">{entry.date}</span>
+          <span className="text-xs text-slate-500">{entry.date}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <Badge

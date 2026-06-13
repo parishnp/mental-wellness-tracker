@@ -12,6 +12,19 @@ import { computeScores } from "@/lib/core/scores";
 import { screen } from "@/lib/core/crisis";
 import { selectIntervention } from "@/lib/core/selectIntervention";
 
+/** Neutral signal used when neither AI extraction nor an embedded signal is available. */
+export function neutralSignal(text: string): Signal {
+  return {
+    dominant_affect: "neutral",
+    themes: [],
+    distortions: [],
+    future_orientation: "neutral",
+    self_efficacy_tone: "neutral",
+    entry_length_words: text.trim().split(/\s+/).filter(Boolean).length,
+    risk_flag: false,
+  };
+}
+
 /** Resolve signals for each entry: prefer an override (live AI), else the embedded signal. */
 export function resolveSignals(
   entries: JournalEntry[],
@@ -22,15 +35,7 @@ export function resolveSignals(
     if (override) return override;
     if (e.precomputed_signals) return e.precomputed_signals;
     // Defensive fallback if a dataset entry ever lacks a signal.
-    return {
-      dominant_affect: "neutral",
-      themes: [],
-      distortions: [],
-      future_orientation: "neutral",
-      self_efficacy_tone: "neutral",
-      entry_length_words: e.text.trim().split(/\s+/).length,
-      risk_flag: false,
-    };
+    return neutralSignal(e.text);
   });
 }
 

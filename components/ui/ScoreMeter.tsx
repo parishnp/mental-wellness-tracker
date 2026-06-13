@@ -25,7 +25,7 @@ export function ScoreMeter({
         <span className="text-sm font-medium text-slate-700">{label}</span>
         <span className="text-sm font-semibold tabular-nums text-ink">
           {metric.value}
-          <span className="ml-1 text-xs font-normal uppercase text-slate-400">
+          <span className="ml-1 text-xs font-normal uppercase text-slate-500">
             {metric.band}
           </span>
         </span>

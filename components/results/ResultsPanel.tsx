@@ -16,6 +16,7 @@ import { InterventionCard } from "@/components/results/InterventionCard";
 import { ScorePanel } from "@/components/results/ScorePanel";
 import { SafetyCard } from "@/components/results/SafetyCard";
 import { ChatPanel } from "@/components/chat/ChatPanel";
+import { ReflectBox } from "@/components/journal/ReflectBox";
 import { AnalyzeButton } from "@/components/controls/AnalyzeButton";
 import { BeforeAfterToggle } from "@/components/controls/BeforeAfterToggle";
 
@@ -140,6 +141,10 @@ export default function ResultsPanel({
           </Section>
         </>
       )}
+
+      <Section title="Write today's entry" step="Journal">
+        <ReflectBox />
+      </Section>
 
       <Section
         title={result ? "The week, entry by entry" : "Aarav's journal"}

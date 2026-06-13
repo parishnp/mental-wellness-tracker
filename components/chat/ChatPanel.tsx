@@ -62,7 +62,7 @@ export function ChatPanel({ datasetId }: { datasetId: DatasetId }) {
           </div>
         ))}
         {loading && (
-          <div className="self-start text-xs text-slate-400">Companion is typing…</div>
+          <div className="self-start text-xs text-slate-500">Companion is typing…</div>
         )}
       </div>
 

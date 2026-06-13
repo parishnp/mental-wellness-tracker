@@ -25,7 +25,7 @@ export default function Page() {
 
       <ResultsPanel student={student} initialEntries={before.entries} />
 
-      <footer className="mt-12 border-t border-slate-200 pt-4 text-xs text-slate-400">
+      <footer className="mt-12 border-t border-slate-200 pt-4 text-xs text-slate-500">
         Deterministic core finds the pattern and screens for risk; Gemini only
         phrases the insight and personalizes the vetted routine. Safety is
         rule-decided and the model can never suppress it.
