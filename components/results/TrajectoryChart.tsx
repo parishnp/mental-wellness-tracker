@@ -33,9 +33,20 @@ function MoodDot({ cx, cy, payload }: DotProps) {
   );
 }
 
-export function TrajectoryChart({ data }: { data: TrajectoryPoint[] }) {
+export function TrajectoryChart({
+  data,
+  summary,
+}: {
+  data: TrajectoryPoint[];
+  summary?: string;
+}) {
   return (
-    <div className="h-72 w-full rounded-2xl border border-slate-200 bg-white p-4">
+    <div
+      role="img"
+      aria-label={summary ?? "Wellness trajectory: mood, sleep and entry length over the week"}
+      className="h-72 w-full rounded-2xl border border-slate-200 bg-white p-4"
+    >
+      {summary && <p className="sr-only">{summary}</p>}
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -16 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#eef1f6" />

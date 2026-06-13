@@ -11,7 +11,8 @@ export function AnalyzeButton({
     <button
       onClick={onClick}
       disabled={loading}
-      className="rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+      aria-busy={loading}
+      className="rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {loading ? "Analyzing…" : "Analyze the week"}
     </button>

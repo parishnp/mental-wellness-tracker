@@ -65,13 +65,24 @@ export default function ResultsPanel({
             disabled={loading}
           />
         )}
-        {error && <span className="text-sm text-red-600">{error}</span>}
+        {error && (
+          <span role="alert" className="text-sm text-red-600">
+            {error}
+          </span>
+        )}
       </div>
 
       {result && (
         <>
           <Section title="Wellness trajectory" step="Step 1">
-            <TrajectoryChart data={result.trajectory} />
+            <TrajectoryChart
+              data={result.trajectory}
+              summary={
+                result.patternDates.length > 0
+                  ? `Mood, sleep and entry length across ${result.trajectory.length} days. ${result.findings.worstDay} is the worst recurring day: average mood ${result.findings.worstDayAvgMood} versus ${result.findings.nonWorstDayAvgMood} the rest of the week, and those days followed the shortest sleep.`
+                  : `Mood, sleep and entry length across ${result.trajectory.length} days. Mood holds steady with no recurring dip.`
+              }
+            />
             {result.patternDates.length > 0 ? (
               <p className="mt-2 text-xs text-slate-500">
                 Worst recurring day:{" "}

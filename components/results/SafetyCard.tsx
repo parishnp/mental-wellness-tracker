@@ -3,7 +3,11 @@ import type { SafetyView } from "@/types/domain";
 export function SafetyCard({ safety }: { safety: SafetyView }) {
   if (safety.level !== "elevated" || !safety.resources) return null;
   return (
-    <div className="mt-4 rounded-2xl border-2 border-red-200 bg-red-50 p-5">
+    <div
+      role="alert"
+      aria-label="Support resources"
+      className="mt-4 rounded-2xl border-2 border-red-200 bg-red-50 p-5"
+    >
       <div className="flex items-center gap-2">
         <span aria-hidden className="text-lg">
           🤝
