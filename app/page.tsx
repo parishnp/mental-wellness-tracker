@@ -6,7 +6,7 @@ export default function Page() {
   const { student } = before;
 
   return (
-    <main className="mx-auto max-w-5xl px-5 py-10">
+    <main id="main" className="mx-auto max-w-5xl px-5 py-10">
       <header className="mb-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-accent">
           ExamCompanion

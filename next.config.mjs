@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   async headers() {
+    // CSP is set per-request (with a nonce) in middleware.ts. These are the
+    // static, nonce-independent hardening headers (OWASP Secure Headers baseline).
     return [
       {
         source: "/:path*",
@@ -14,11 +16,13 @@ const nextConfig = {
             value: "camera=(), microphone=(), geolocation=()",
           },
           {
-            key: "Content-Security-Policy",
-            // 'unsafe-inline' for scripts is the pragmatic tradeoff for Next's
-            // inline bootstrap without a nonce pipeline (acceptable for a demo).
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            // No `preload` by default — OWASP advises against it (hard to undo).
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains",
           },
         ],
       },

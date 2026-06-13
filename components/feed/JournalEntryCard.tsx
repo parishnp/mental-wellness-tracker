@@ -1,8 +1,9 @@
+import { memo } from "react";
 import type { JournalEntry } from "@/types/domain";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
-export function JournalEntryCard({
+function JournalEntryCardImpl({
   entry,
   highlight = false,
   flaggedRisk = false,
@@ -75,3 +76,6 @@ export function JournalEntryCard({
     </Card>
   );
 }
+
+// Memoized: the feed renders 11 of these and they're pure given their props.
+export const JournalEntryCard = memo(JournalEntryCardImpl);

@@ -9,6 +9,18 @@ export default defineConfig({
   test: {
     environment: "node", // component tests opt into jsdom per-file via a pragma
     include: ["__tests__/**/*.test.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      // Enforce coverage on the deterministic core — the audited, safety-critical layer.
+      include: ["lib/core/**/*.ts"],
+      reporter: ["text", "text-summary"],
+      thresholds: {
+        statements: 85,
+        branches: 80,
+        functions: 85,
+        lines: 85,
+      },
+    },
   },
   resolve: {
     alias: { "@": path.resolve(__dirname, ".") },

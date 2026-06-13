@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type {
   AnalyzeResponse,
@@ -42,6 +42,13 @@ export default function ResultsPanel({
   const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState("");
+  const insightRef = useRef<HTMLDivElement>(null);
+
+  // Move focus to the insight after analysis so keyboard/SR users land on the result.
+  useEffect(() => {
+    if (result) insightRef.current?.focus();
+  }, [result]);
 
   async function runAnalysis(id: DatasetId) {
     setLoading(true);
@@ -51,8 +58,10 @@ export default function ResultsPanel({
       const data = await analyze(id);
       setResult(data);
       setEntries(data.entries);
+      setStatus(`Analysis complete for the "${id}" week.`);
     } catch {
       setError("Analysis request failed. Check the dev server and try again.");
+      setStatus("Analysis failed.");
     } finally {
       setLoading(false);
     }
@@ -63,6 +72,9 @@ export default function ResultsPanel({
 
   return (
     <div>
+      <p role="status" aria-live="polite" className="sr-only">
+        {status}
+      </p>
       <div className="flex flex-wrap items-center gap-3">
         <AnalyzeButton onClick={() => runAnalysis(datasetId)} loading={loading} />
         {result && (
@@ -105,7 +117,9 @@ export default function ResultsPanel({
           </Section>
 
           <Section title="What the numbers hid" step="Step 2">
-            <InsightCard insight={result.insight} source={result.sources.insight} />
+            <div ref={insightRef} tabIndex={-1} className="outline-none">
+              <InsightCard insight={result.insight} source={result.sources.insight} />
+            </div>
           </Section>
 
           <Section title="Your scores" step="Step 3">

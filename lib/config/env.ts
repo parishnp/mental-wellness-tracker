@@ -8,5 +8,3 @@ const schema = z.object({
 export const env = schema.parse({
   GEMINI_API_KEY: process.env.GEMINI_API_KEY || undefined,
 });
-
-export const hasGemini = Boolean(env.GEMINI_API_KEY);
